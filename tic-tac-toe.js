@@ -13,6 +13,13 @@ window.addEventListener("load",function(){
             square.classList.add(player);
             turn++;
         });
+    
+        square.addEventListener("mouseover", function(){
+            square.classList.add("hover");
+        });
 
+        square.addEventListener("mouseout", function(){
+            square.classList.remove("hover");
+        });
     });
 });
