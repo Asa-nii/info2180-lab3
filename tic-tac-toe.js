@@ -27,6 +27,11 @@ window.addEventListener("load",function(){
         square.classList.add("square");
 
         square.addEventListener("click", function() {
+
+            if (game[index]!==""){
+                return;
+            }
+
             const player = turn % 2 === 0? "X": "O";
             game[index] = player;
             square.textContent=player;
@@ -59,4 +64,3 @@ window.addEventListener("load",function(){
         status.classList.remove("you-won");
     });
 });
-
