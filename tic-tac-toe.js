@@ -5,12 +5,10 @@ window.addEventListener("load",function(){
     const originalMessage=status.textContent;
     let game = ["","","","","","","","",""];
     let turn =0;
-
+    let gameover=false;
 
     const wins = [
-        [0,1,2],[3,4,5], [6,7,8],
-        [0,3,6], [1,4,7], [2,5,8],
-        [0,4,8], [2,4,6]
+        [0,4,8], [2,4,6], [0,3,6], [1,4,7], [2,5,8],[0,1,2],[3,4,5], [6,7,8]
     ];
 
     function checkWin(player){
@@ -18,8 +16,10 @@ window.addEventListener("load",function(){
             if (game[a]=== player && game[b] === player && game[c] === player){
                 status.textContent= "Congratulations! " + player + " is the Winner!";
                 status.classList.add("you-won")
+                return true
             }
         }
+        return false;
      }
 
 
@@ -28,7 +28,7 @@ window.addEventListener("load",function(){
 
         square.addEventListener("click", function() {
 
-            if (game[index]!==""){
+            if (game[index]!=="" || gameover==true){
                 return;
             }
 
@@ -36,7 +36,9 @@ window.addEventListener("load",function(){
             game[index] = player;
             square.textContent=player;
             square.classList.add(player);
-            checkWin(player);
+            if (checkWin(player)){
+                gameover=true
+            };
             turn++;
         });
     
@@ -52,7 +54,7 @@ window.addEventListener("load",function(){
     gameButton.addEventListener("click",function(){
         game=["","","","","","","","",""];
         turn = 0;
-
+        gameover = false;
         squares.forEach(function (square){
         square.classList.add("square");
         square.textContent = "";
