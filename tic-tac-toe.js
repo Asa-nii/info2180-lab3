@@ -1,6 +1,8 @@
 window.addEventListener("load",function(){
     const squares= document.querySelectorAll("#board div");
     const status = document.getElementById("status");
+    const gameButton= document.querySelector(".btn");
+    const originalMessage=status.textContent;
     let game = ["","","","","","","","",""];
     let turn =0;
 
@@ -41,4 +43,20 @@ window.addEventListener("load",function(){
             square.classList.remove("hover");
         });
     });
+
+    gameButton.addEventListener("click",function(){
+        game=["","","","","","","","",""];
+        turn = 0;
+
+        squares.forEach(function (square){
+        square.classList.add("square");
+        square.textContent = "";
+        square.classList.remove("X","O");
+
+        });
+        
+        status.textContent=originalMessage;
+        status.classList.remove("you-won");
+    });
 });
+
